@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Participação - Votação para Representante</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            color: #333;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #017aff;
+            margin: 20px 0;
+        }
+
+        .button {
+            background-color: #017aff;
+            color: white;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #005bb5;
+            /* Azul mais escuro ao passar o mouse */
+        }
+
+        .button-results {
+            background-color: #008CBA;
+            /* Azul diferente para o botão de resultados */
+        }
+
+        .button-results:hover {
+            background-color: #005f87;
+            /* Azul mais escuro ao passar o mouse */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Remove qualquer espaço em branco ao redor da imagem */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <!-- Imagem superior -->
+        <div class="image-container">
+            <img src="https://imgur.com/TbIZya7.png" alt="Imagem superior">
+        </div>
+
+        <h1>Votação para Representante</h1>
+        <button class="button" onclick="participar()">Quer participar? Clique aqui</button>
+        <button class="button button-results" onclick="verResultados()">Ver resultados parciais</button>
+
+        <!-- Imagem inferior -->
+        <div class="image-container">
+            <img src="https://imgur.com/03oYKwz.png" alt="Imagem inferior">
+        </div>
+
+    </div>
+
+    <script>
+        function participar() {
+            window.location.href = `formulario.html?name=`;
+        }
+
+        function verResultados() {
+            window.location.href = `resultados.html?name=`;
+        }
+    </script>
+
+</body>
+
+</html>

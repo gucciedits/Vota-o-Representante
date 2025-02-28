@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa Boca de Urna Eleições 2024</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <script>
+        function enviarformulario(event) {
+            event.preventDefault();
+            window.location.href = "votacao.html"; // Redireciona para a página de votação
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <form onsubmit="enviarformulario(event)">
+            <fieldset>
+                <legend><b>Crie sua conta para participar da pesquisa</b></legend>
+                <br>
+                <div class="inputBox">
+                    <input type="text" name="nome" id="nome" class="inputUser" required>
+                    <label for="nome" class="labelInput">Nome completo</label>
+                </div>
+                <br>
+                <div class="inputBox">
+                    <input type="number" name="number" id="number" class="inputUser" required>
+                    <label for="number" class="labelInput">Idade</label>
+                </div>
+                <br>
+                <div class="inputBox">
+                    <input type="email" name="email" id="email" class="inputUser" required>
+                    <label for="email" class="labelInput">E-mail</label>
+                </div>
+                <br>
+                <input type="submit" name="submit" id="submit">
+                <div class="requirements">
+                    <p>Use 8 ou mais caracteres</p>
+                    <p>Use uma letra maiúscula (ex. A,B,C)</p>
+                    <p>Use um número (ex. 1,2,3,4)</p>
+                    <p>Use um símbolo (ex. @#$*)</p>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .person {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+
+        .person img {
+            width: 100%;
+            border-radius: 50%;
+        }
+
+        .name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .vote-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .vote-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Votação</h1>
+    <div class="container">
+        <div class="person">
+            <img src="https://imgur.com/03oYKwz.png" alt="Luana">
+            <div class="name">Luana</div>
+            <div class="description">.</div>
+            <button class="vote-btn" onclick="confirmVote('Luana')">Votar</button>
+        </div>
+        <div class="person">
+            <img src="https://imgur.com/TbIZya7.png" alt="Guilherme">
+            <div class="name">Guilherme</div>
+            <div class="description">.</div>
+            <button class="vote-btn" onclick="confirmVote('Guilherme')">Votar</button>
+        </div>
+    </div>
+
+    <script>
+        const candidates = [
+            {
+                name: "Luana",
+                image: "https://imgur.com/03oYKwz.png",
+                description: "."
+            },
+            {
+                name: "Guilherme",
+                image: "https://imgur.com/TbIZya7.png",
+                description: "."
+            }
+        ];
+
+        function confirmVote(candidateName) {
+            const candidate = candidates.find(c => c.name === candidateName);
+            if (candidate) {
+                // Passando todos os parâmetros necessários para a página de confirmação
+                window.location.href = `confirmavotacao.html?name=${encodeURIComponent(candidate.name)}&image=${encodeURIComponent(candidate.image)}&description=${encodeURIComponent(candidate.description)}`;
+            } else {
+                alert('Dados do candidato não encontrados. Retornando à votação.');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

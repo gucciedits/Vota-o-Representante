@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Voto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .confirm-btn,
+        .back-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .confirm-btn:hover,
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+
+        .back-btn {
+            background-color: #f44336;
+        }
+
+        .back-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Confirmação de Voto</h1>
+    <div class="container">
+        <div class="name" id="candidate-name"></div>
+
+        <div>
+            <button class="confirm-btn" onclick="confirmChoice()">Sim, esse é o candidato</button>
+            <button class="back-btn" onclick="goBack()">Não, voltar à votação</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para pegar os parâmetros da URL
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                name: urlParams.get('name')
+            };
+        }
+
+        // Função para preencher a página com os dados do candidato
+        function populateCandidateDetails() {
+            const params = getQueryParams();
+            document.getElementById('candidate-name').textContent = params.name;
+        }
+
+        window.onload = populateCandidateDetails;
+
+        function confirmChoice() {
+            const params = getQueryParams();
+            window.location.href = `resultados.html?name=${encodeURIComponent(params.name)}`;
+        }
+
+        function goBack() {
+            window.location.href = 'votacao.html'; // Altere para o nome do seu arquivo de votação
+        }
+    </script>
+
+</body>
+
+</html>

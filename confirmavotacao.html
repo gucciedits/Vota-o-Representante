@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Voto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .confirm-btn,
+        .back-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .confirm-btn:hover,
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            background-color: #f44336;
+        }
+        .back-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confirmação de Voto</h1>
+    <div class="container">
+        <img id="candidate-image" style="max-width: 200px; border-radius: 10px;" alt="Candidato">
+        <div class="name" id="candidate-name"></div>
+        <div id="candidate-description" class="description"></div>
+        <div>
+            <button class="confirm-btn" onclick="confirmChoice()">Sim, esse é o candidato</button>
+            <button class="back-btn" onclick="goBack()">Não, voltar à votação</button>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                name: urlParams.get('name'),
+                image: urlParams.get('image'),
+                description: urlParams.get('description')
+            };
+        }
+
+        function populateCandidateDetails() {
+            const params = getQueryParams();
+            if (params.name && params.image && params.description) {
+                document.getElementById('candidate-name').textContent = params.name;
+                document.getElementById('candidate-image').src = params.image;
+                document.getElementById('candidate-description').textContent = params.description;
+            } else {
+                alert('Dados do candidato não encontrados. Retornando à votação.');
+                goBack();
+            }
+        }
+
+        function confirmChoice() {
+            const params = getQueryParams();
+            const votos = JSON.parse(localStorage.getItem('votos')) || [0, 0];
+            const candidates = ['Luana', 'Guilherme'];
+            const index = candidates.indexOf(params.name);
+
+            if (index !== -1) {
+                votos[index] += 1;
+                localStorage.setItem('votos', JSON.stringify(votos));
+            }
+
+            window.location.href = 'resultados.html';
+        }
+
+        function goBack() {
+            window.location.href = 'votacao.html';
+        }
+
+        window.onload = populateCandidateDetails;
+    </script>
+</body>
+</html>
