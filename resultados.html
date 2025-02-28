@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,11 +31,9 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>Resultados Parciais de Votação 2024</h1>
-
         <canvas id="votingResults"></canvas>
 
         <div class="voto-info" id="voto-luana"></div>
@@ -47,9 +44,6 @@
 
     <script>
         const candidatos = ['Luana', 'Guilherme'];
-
-        // Inicializa os votos como [0, 0] diretamente
-        localStorage.setItem('votos', JSON.stringify([0, 0]));
 
         function getVotes() {
             try {
@@ -109,5 +103,4 @@
         });
     </script>
 </body>
-
 </html>
