@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Parciais de Votação 2024</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        canvas {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .voto-info {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Resultados Parciais de Votação 2024</h1>
+
+        <canvas id="votingResults"></canvas>
+
+        <div class="voto-info" id="voto-luana"></div>
+        <div class="voto-info" id="voto-guilherme"></div>
+
+        <button onclick="goToHome()">Voltar para a Página Inicial</button>
+    </div>
+
+    <script>
+        const candidatos = ['Luana', 'Guilherme'];
+
+        // Inicializa os votos como [0, 0] diretamente
+        localStorage.setItem('votos', JSON.stringify([0, 0]));
+
+        function getVotes() {
+            try {
+                const votos = JSON.parse(localStorage.getItem('votos')) || [0, 0];
+                return votos;
+            } catch (error) {
+                console.error('Erro ao carregar votos do localStorage:', error);
+                return [0, 0];
+            }
+        }
+
+        function renderChart() {
+            const votos = getVotes();
+            const ctx = document.getElementById('votingResults').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: candidatos,
+                    datasets: [{
+                        label: 'Número de Votos',
+                        data: votos,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderVotes() {
+            const votos = getVotes();
+            document.getElementById('voto-luana').textContent = `Luana: ${votos[0]} votos`;
+            document.getElementById('voto-guilherme').textContent = `Guilherme: ${votos[1]} votos`;
+        }
+
+        function goToHome() {
+            window.location.href = "index.html"; // Redireciona para a página inicial
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            renderChart();
+            renderVotes(); // Exibe os votos diretamente na página
+        });
+    </script>
+</body>
+
+</html>
